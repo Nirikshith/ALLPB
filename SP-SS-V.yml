@@ -1,0 +1,18 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+  
+  vars:
+    pkgname: httpd
+
+  tasks:
+    - yum:
+        name: "{{pkgname}}"
+        state: installed
+
+    - service:
+        name: "{{pkgname}}"
+        state: started
+

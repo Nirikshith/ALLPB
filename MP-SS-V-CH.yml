@@ -1,0 +1,39 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  vars:
+    pkgname: ['docker','httpd','tree']
+    pkgname1: ['apache2']
+
+  tasks:
+    - yum:
+        name: "{{pkgname}}"
+        state: installed
+      when: ansible_os_family == "RedHat"
+      notify: n
+  
+  
+    - apt:
+        name: "{{pkgname1}}"
+        state: installed
+      when: ansible_os_family == "Debian"
+      notify: n1 
+
+  handlers:
+    - name: n
+      service:
+        name: httpd
+        state: started
+
+    - name: n
+      service:
+        name: docker
+        state: started
+
+    - name: n1
+      service:
+        name: apache2
+        state: started

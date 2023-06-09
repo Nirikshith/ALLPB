@@ -1,0 +1,15 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  tasks:
+    - user:
+        name: '{{item}}'
+
+      with_items:
+        - paramathma
+        - jogi
+        - psycho
+        - raj

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  tasks:
+    - file:
+        path: /home/tanu/dir1
+        state: directory

@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: yes
+  user: niri
+  connection: ssh
+
+  tasks:
+    - yum:
+        name: '{{item}}'
+        state: installed
+
+      with_items:
+        - httpd
+        - docker
+        - tree
+
+
+    - service:
+        name: httpd
+        state: started
+
+    - service:
+        name: docker
+        state: started
+

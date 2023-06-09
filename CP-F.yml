@@ -1,0 +1,10 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  tasks:
+    - copy:
+       src: /home/niri/king.html
+       dest: /var/www/html

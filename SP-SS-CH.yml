@@ -1,0 +1,29 @@
+---
+- hosts: all
+  user: niri
+  connection: ssh
+  become: yes
+
+  tasks:
+    - yum:
+        name: httpd
+        state: installed
+      when: ansible_os_family == "RedHat"
+      notify: n
+
+    - apt:
+        name: apache2
+        state: installed
+      when: ansible_os_family == "Debian"
+      notify: n1
+
+  handlers:
+    - name: n
+      service:
+        name: httpd
+        state: started
+
+    - name: n1
+      service:
+        name: httpd
+        state: started

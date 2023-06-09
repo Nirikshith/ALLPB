@@ -1,0 +1,21 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  vars:
+    pkgname: ['docker','httpd']
+
+  tasks:
+    - yum:
+        name: "{{pkgname}}"
+        state: installed
+
+    - service:
+        name: httpd
+        state: started
+
+    - service:
+        name: docker
+        state: started

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  connection: ssh
+  become: yes
+  user: niri
+
+  roles:
+    - testrole
+       

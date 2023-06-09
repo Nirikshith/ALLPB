@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  user: niri
+
+  vars:
+    user: suresh
+
+  tasks:
+    - user:
+        name: "{{user}}"

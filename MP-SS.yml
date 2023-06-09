@@ -1,0 +1,20 @@
+---
+- hosts: all
+  connection: ssh
+  user: niri
+  become: yes
+
+  tasks:
+    - yum:
+        name: ['httpd','docker','tree']
+        state: installed
+
+    - service:
+        name: httpd
+        state: started
+
+    - service:
+        name: docker
+        state: started
+
+

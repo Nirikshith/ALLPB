@@ -1,0 +1,9 @@
+---
+- hosts: all
+  connection: ssh
+  user: niri
+  become: yes
+
+  tasks:
+    - user:
+        name: huchcha
